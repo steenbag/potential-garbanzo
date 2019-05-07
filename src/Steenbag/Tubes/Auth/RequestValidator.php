@@ -1,7 +1,7 @@
 <?php namespace Steenbag\Tubes\Auth;
 
 use Steenbag\Tubes\General\Auth\AuthRejectionCode;
-use Steenbag\Tubes\Keys\Ardent\ApiKey;
+use Steenbag\Tubes\Contract\ApiKey;
 use Steenbag\Tubes\Keys\Ardent\ApiKeyProvider;
 use Steenbag\Tubes\Manager\ApiManager;
 use Steenbag\Tubes\Contract\Request;
