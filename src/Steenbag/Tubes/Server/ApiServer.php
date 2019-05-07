@@ -6,6 +6,7 @@ use Steenbag\Tubes\Contract\ApiKeyProvider;
 use Steenbag\Tubes\General\Debug\ServerException;
 use Steenbag\Tubes\General\Debug\StackTraceElement;
 use Steenbag\Tubes\Manager\ApiManager;
+use Steenbag\Tubes\NullImpl\Authenticator;
 use Steenbag\Tubes\NullImpl\Container;
 use Steenbag\Tubes\NullImpl\FileSystem;
 use Steenbag\Tubes\NullImpl\Repository;
@@ -33,7 +34,7 @@ class ApiServer
 
     protected $fileSystem;
 
-    public function __construct(array $config, ApiKeyProvider $keyProvider)
+    public function __construct(array $config, ApiKeyProvider $keyProvider, \Steenbag\Tubes\Contract\Authenticator $authenticator)
     {
         $this->keyProvider = $keyProvider;
         $this->debugMode = isset($config['debug']) ? $config['debug'] : false;
@@ -63,7 +64,7 @@ class ApiServer
         $this->fileSystem = $fileSystem;
         $this->certStore = new RsaZipCertStore($fileSystem);
 
-        $this->manager = new ApiManager($this->container, $this->config, $this->keyProvider, $this->certStore);
+        $this->manager = new ApiManager($this->container, $this->config, $this->keyProvider, $this->certStore, $authenticator);
         $this->manager->initServices($this->config->get('steenbag/tubes::rpc-services'));
     }
 

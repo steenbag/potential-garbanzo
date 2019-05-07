@@ -9,7 +9,9 @@ $config = [
     ]
 ];
 
-$app = new Steenbag\Tubes\Server\ApiServer($config, new Steenbag\Tubes\Keys\PhpActiveRecord\ApiKeyProvider);
+$auth = new Authenticator();
+
+$app = new Steenbag\Tubes\Server\ApiServer($config, new Steenbag\Tubes\Keys\PhpActiveRecord\ApiKeyProvider, $auth);
 
 echo($app->run());
 exit(0);
