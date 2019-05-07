@@ -11,7 +11,8 @@
     "phpseclib/phpseclib": "~2.0",
     "namshi/jose": "~7.0",
     "symfony/http-foundation": "~3.4",
-    "anahkiasen/underscore-php": "~2.0"
+    "anahkiasen/underscore-php": "~2.0",
+    "nesbot/carbon": "dev-master"
   },
   "require-dev": {
     "mockery/mockery": "dev-master@dev"
