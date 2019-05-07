@@ -69,7 +69,8 @@ class ApiManager implements ManagerInterface
             'key' => $identifier,
             'name' => $driver::getName(),
             'procedures' => $driver::listProcedures(),
-            'driver' => get_class($driver)
+            'driver' => get_class($driver),
+            'instance' => $driver
         ];
     }
 
@@ -96,7 +97,7 @@ class ApiManager implements ManagerInterface
                 throw new \InvalidArgumentException("The {$api} service is not available.");
             }
 
-            return $driver;
+            return $driver['instance'];
         }
     }
 
@@ -170,7 +171,7 @@ class ApiManager implements ManagerInterface
      */
     public function createExceptionBody(ServiceInterface $driver, $method, $protocol, \Exception $exception)
     {
-        $method = camel_case($method);
+        $method = camelCase($method);
         try {
             $protocol = $protocol ?: $this->config->get('steenbag/tubes::default-protocol', 'json');
 

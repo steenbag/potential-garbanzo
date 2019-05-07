@@ -10,6 +10,7 @@ use Steenbag\Tubes\Token\Claim\Claim;
 use Steenbag\Tubes\Token\Claim\ContainsEqualsTo;
 use Steenbag\Tubes\Token\Claim\Factory;
 use Steenbag\Tubes\Token\ValidationData;
+use Carbon\Carbon;
 
 class RequestValidator
 {
@@ -185,10 +186,10 @@ class RequestValidator
     {
         $api = $this->api;
         $method = $this->method;
-        $requestDate = \Carbon::parse($dateHeader);
+        $requestDate = Carbon::parse($dateHeader);
         // Requests cannot be more than 30 seconds old.
         // This helps to mitigate replay attacks.
-        if ($requestDate->diffInSeconds(\Carbon::now(), true) > 30) {
+        if ($requestDate->diffInSeconds(Carbon::now(), true) > 30) {
             return AuthRejectionCode::EXPIRED;
         }
 

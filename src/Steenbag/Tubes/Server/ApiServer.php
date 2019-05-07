@@ -1,8 +1,10 @@
 <?php namespace Steenbag\Tubes\Server;
 
+use Steenbag\Tubes\Auth\AuthExceptionCodes;
 use Steenbag\Tubes\Auth\RequestValidator;
 use Steenbag\Tubes\Certificate\RsaZipCertStore;
 use Steenbag\Tubes\Contract\ApiKeyProvider;
+use Steenbag\Tubes\General\Auth\AuthorizationException;
 use Steenbag\Tubes\General\Debug\ServerException;
 use Steenbag\Tubes\General\Debug\StackTraceElement;
 use Steenbag\Tubes\Manager\ApiManager;

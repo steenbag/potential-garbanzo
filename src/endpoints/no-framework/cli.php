@@ -5,7 +5,7 @@ date_default_timezone_set('America/New_York');
 
 $config = [
     'steenbag/tubes::rpc-services' => [
-        // new My\Api\Provider\Class()
+        // 'MyApp' => new My\Api\Provider\Class()
     ]
 ];
 
