@@ -65,6 +65,7 @@ class ApiServer
         $fileSystem = new FileSystem;
         $this->fileSystem = $fileSystem;
         $this->certStore = new RsaZipCertStore($fileSystem);
+        $this->certStore->setBasePath($this->config->get('steenbag/tubes::cert-store-path'));
 
         $this->manager = new ApiManager($this->container, $this->config, $this->keyProvider, $this->certStore, $authenticator);
         $this->manager->initServices($this->config->get('steenbag/tubes::rpc-services'));
@@ -86,6 +87,7 @@ class ApiServer
 
             $messageLookup = AuthExceptionCodes::$messages;
             $validationMessage = isset($messageLookup[$validationResult]) ? $messageLookup[$validationResult] : 'Invalid API Key';
+
             if ($validationResult !== true) {
                 $driver = $this->manager->getServiceDriver($serviceName);
                 $exception = new AuthorizationException(['why' => $validationMessage, 'code' => $validationResult]);
