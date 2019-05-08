@@ -1,6 +1,7 @@
 <?php namespace Steenbag\Tubes\Keys\Doctrine;
 
 use Steenbag\Tubes\Contract\ApiKeyProvider;
+use Steenbag\Tubes\Contract\ApiKey;
 use Doctrine\ORM\EntityRepository;
 
 class ApiKeyRepository extends EntityRepository implements ApiKeyProvider
