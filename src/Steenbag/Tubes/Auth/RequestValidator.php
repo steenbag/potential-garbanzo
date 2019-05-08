@@ -105,7 +105,7 @@ class RequestValidator
         }
         $signer = new RequestSigner();
         $certificate = $apiManager->getCertStore()->getCertificate($apiKey);
-        $result = $signer->verify($certificate, $requestSignature, $requestUri, strlen($requestContent), md5($requestContent), $request->header('Request-Date'));
+        $result = $signer->verify($certificate, $requestSignature, $requestUri, strlen($requestContent), md5($requestContent), $request->header('Request-Date'), $_headers);
 
         if ($result === false) {
             return AuthRejectionCode::BAD_KEY;
