@@ -12,7 +12,7 @@
     "namshi/jose": "~7.0",
     "symfony/http-foundation": "~3.4",
     "anahkiasen/underscore-php": "~2.0",
-    "nesbot/carbon": "~1.37"
+    "nesbot/carbon": "1.36.2"
   },
   "require-dev": {
     "mockery/mockery": "dev-master@dev"
