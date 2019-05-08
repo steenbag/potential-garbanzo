@@ -43,7 +43,7 @@ abstract class BaseClient
      * @param Certificate $certificate
      * @return Store
      */
-    public function getStore($type, $endpoint = null, $config = null, Certificate $certificate)
+    public function getStore(Certificate $certificate, $type, $endpoint = null, $config = null)
     {
         return new Store($this->getThriftClientFactory(), $certificate, $type, $endpoint ?: $this->endpoint, $config ?: $this->config);
     }

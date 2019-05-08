@@ -1,5 +1,6 @@
 <?php namespace Steenbag\Tubes\Thrift;
 
+use Steenbag\Tubes\Auth\HttpRequestCanonicalizer;
 use Steenbag\Tubes\Auth\RequestSigner;
 use Steenbag\Tubes\Certificate\Certificate;
 use GuzzleHttp\Ring\Future\CompletedFutureArray;
@@ -237,7 +238,7 @@ class TShellTransport extends TTransport
             $signer = new RequestSigner();
             $date = date(DATE_ISO8601);
 
-            $signature = $signer->sign($this->certificate, $this->uri_, strlen($this->buf_), md5($this->buf_), $date);
+            $signature = $signer->sign($this->certificate, $this->uri_, strlen($this->buf_), md5($this->buf_), $date, $this->headers_);
 
             $tmpHeaders = [
                 'X-Thrift-Auth' => sprintf('%s %s %s', "SharedKey", $this->certificate->getApiKey(), $signature),
