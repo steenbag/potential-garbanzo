@@ -262,7 +262,6 @@ class ApiManager implements ManagerInterface
             // Register all of our handlers into the multiplexer.
             foreach ($services as $api => $driverDef) {
                 $driver = $driverDef['instance'];
-                echo $driver;
                 $processorClass = "\\" . $driver::getThriftProcessor();
                 if (class_exists($processorClass)) {
                     $multiProcessor->registerProcessor($driver::getThriftServiceName(), new $processorClass($driver));
