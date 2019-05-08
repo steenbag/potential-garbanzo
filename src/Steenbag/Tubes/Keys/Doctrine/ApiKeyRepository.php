@@ -1,7 +1,7 @@
 <?php namespace Steenbag\Tubes\Keys\Doctrine;
 
 use Steenbag\Tubes\Contract\ApiKeyProvider;
-use Steenbag\Tubes\Contract\ApiKey;
+use Steenbag\Tubes\Contract\ApiKey as ApiKeyContract;
 use Doctrine\ORM\EntityRepository;
 
 class ApiKeyRepository extends EntityRepository implements ApiKeyProvider
@@ -116,10 +116,10 @@ class ApiKeyRepository extends EntityRepository implements ApiKeyProvider
     /**
      * Delete the given API Key.
      *
-     * @param ApiKey $key
+     * @param ApiKeyContract $key
      * @return bool
      */
-    public function delete(ApiKey $key)
+    public function delete(ApiKeyContract $key)
     {
         // TODO: Implement delete() method.
     }
