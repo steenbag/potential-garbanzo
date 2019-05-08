@@ -72,6 +72,6 @@ class Request implements \Steenbag\Tubes\Contract\Request
      */
     public function header($key = null, $default = null)
     {
-        return $this->symfony->headers->get($key, $default);
+        return is_null($key) ? $this->symfony->headers->all() : $this->symfony->headers->get($key, $default);
     }
 }
