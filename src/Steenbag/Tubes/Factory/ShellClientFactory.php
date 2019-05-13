@@ -18,11 +18,14 @@ class ShellClientFactory extends BaseFactory implements Contract
 
     protected $scriptTarget;
 
+    protected $headers;
+
     public function __construct(Repository $config)
     {
         $this->protocol = $config->get('protocol', 'binary');
         $this->pathToPhp = $config->get('path-to-php', PHP_BINARY);
         $this->scriptTarget = $config->get('script-target', null);
+        $this->headers = $config->get('headers', []);
     }
 
     /**
@@ -59,6 +62,7 @@ class ShellClientFactory extends BaseFactory implements Contract
         if ($multiplexed) {
             $transport->addHeaders(['X-Thrift-Multiplexed' => true]);
         }
+        $transport->addHeaders($this->headers);
 
         // Create the protocol.
         $protocol = $this->getThriftProtocol($protocol ?: $this->protocol, $transport);
