@@ -197,4 +197,14 @@ class ApiServer
         return $thriftException;
     }
 
+    /**
+     * Return the current request.
+     *
+     * @return \Steenbag\Tubes\NullImpl\Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
 }
