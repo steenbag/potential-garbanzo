@@ -14,7 +14,7 @@ class BaseModel
 
     protected $attributes = [];
 
-    protected $dateTypes = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dateTypes = ['createdAt', 'updatedAt', 'deletedAt'];
 
     protected $currencyTypes = [];
 
@@ -112,6 +112,10 @@ class BaseModel
         }
         $attribute = StringHelper::camelCase($attribute);
 
+        if ($this->isDate($attribute)) {
+            return isset($this->attributes[$attribute]) ? $this->attributes[$attribute]->format(\DateTime::ISO8601) : null;
+        }
+
         return isset($this->attributes[$attribute]) ? $this->attributes[$attribute] : null;
     }
 
@@ -161,7 +165,7 @@ class BaseModel
      */
     public function isDate($attribute)
     {
-        return in_array($attribute, $this->getDateTypes());
+        return in_array($attribute, $this->getDateTypes()) || in_array(StringHelper::camelCase($attribute), $this->getDateTypes());
     }
 
     /**
@@ -397,6 +401,17 @@ class BaseModel
                 return $item;
             }
         }
+    }
+
+    public function getAttributes()
+    {
+        $attrs = [];
+        $keys = array_keys($this->attributes);
+        foreach ($keys as $attribute) {
+            $attrs[$attribute] = $this->get($attribute);
+        }
+
+        return $attrs;
     }
 
 }
