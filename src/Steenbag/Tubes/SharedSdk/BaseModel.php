@@ -414,4 +414,12 @@ class BaseModel
         return $attrs;
     }
 
+    /**
+     * @return TBase
+     */
+    public function getThriftModel()
+    {
+        return $this->thriftModel;
+    }
+
 }
