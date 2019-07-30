@@ -272,7 +272,6 @@ class ApiManager implements ManagerInterface
 
             return $outBuffer->readAll(TStringFuncFactory::create()->strlen($outBuffer->getBuffer()));
         } catch (\Exception $e) {
-            \Log::error($e);
             throw $e;
         }
     }
